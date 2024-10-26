@@ -264,6 +264,23 @@ class Question {
 // Main game loop
 public class TimeTravelGame {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+       System.out.println("\n✨🌟 Welcome to the Time Travel Simulator! 🌟✨");
+       System.out.println("\nEver wondered what it would be like to step back in time and witness the grandeur of ancient civilizations?");
+       System.out.println("In this immersive journey, you'll get the chance to explore some of India's most fascinating historical eras.");
+       System.out.println("From the bustling cities of the Indus Valley to the golden age of the Gupta Empire, and the mighty rule of the Mughals and Marathas...");
+       System.out.println("Each era has its own unique story, culture, and challenges. But beware! Only those who can pass the tests of knowledge can move forward.");
+       System.out.println("\nAre you ready to embark on a thrilling adventure through time?");
+       System.out.println("Prepare yourself to learn, explore, and prove your knowledge as you navigate the rich history of India.\n");
+       System.out.print("Do you want to begin your journey? (yes/no): ");
+        String playResponse = scanner.nextLine().trim().toLowerCase();
+
+        if (!playResponse.equals("yes")) {
+            System.out.println("Maybe next time. Goodbye!");
+            return;
+        }
+
+
         TimeTraveler traveler = new TimeTraveler();
         TimeTravelHistory history = new TimeTravelHistory();
         QuizStrategy quizStrategy = new SimpleQuizStrategy();
