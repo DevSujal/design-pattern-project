@@ -1,6 +1,21 @@
 import java.util.*;
-
+import java.util.concurrent.TimeUnit; 
 // Base interface for historical eras
+
+class Print {
+    public static void slowPrint(String text) {
+        try {
+            for (char c : text.toCharArray()) {
+                System.out.print(c);
+                TimeUnit.MILLISECONDS.sleep(20);
+            }
+        } catch (InterruptedException e) {
+            System.out.print(text);
+        }finally {
+            System.out.println();
+        }
+    }
+}
 interface Era {
     void describeEra();
     List<String> getKeyEvents();
@@ -10,7 +25,7 @@ interface Era {
 // Concrete classes for Indian historical eras
 class IndusValleyCivilization implements Era {
     public void describeEra() {
-        System.out.println("\nWelcome to the Indus Valley Civilization!\nExperience the advanced urban planning and trade culture of ancient India.\n");
+        Print.slowPrint("\nWelcome to the Indus Valley Civilization!\nExperience the advanced urban planning and trade culture of ancient India.\n");
     }
 
     public List<String> getKeyEvents() {
@@ -34,7 +49,7 @@ class IndusValleyCivilization implements Era {
 
 class GuptaEmpire implements Era {
     public void describeEra() {
-        System.out.println("\nWelcome to the Gupta Empire!\nKnown as the Golden Age of India, it was a time of cultural and scientific advancements.\n");
+        Print.slowPrint("\nWelcome to the Gupta Empire!\nKnown as the Golden Age of India, it was a time of cultural and scientific advancements.\n");
     }
 
     public List<String> getKeyEvents() {
@@ -58,7 +73,7 @@ class GuptaEmpire implements Era {
 
 class MughalEmpire implements Era {
     public void describeEra() {
-        System.out.println("\nWelcome to the Mughal Empire!\nA period marked by significant cultural and architectural advancements in India.\n");
+        Print.slowPrint("\nWelcome to the Mughal Empire!\nA period marked by significant cultural and architectural advancements in India.\n");
     }
 
     public List<String> getKeyEvents() {
@@ -82,7 +97,7 @@ class MughalEmpire implements Era {
 
 class MauryaEmpire implements Era {
     public void describeEra() {
-        System.out.println("\nWelcome to the Maurya Empire!\nA period of great political unity and expansion in ancient India.\n");
+        Print.slowPrint("\nWelcome to the Maurya Empire!\nA period of great political unity and expansion in ancient India.\n");
     }
 
     public List<String> getKeyEvents() {
@@ -106,7 +121,7 @@ class MauryaEmpire implements Era {
 
 class MarathaEmpire implements Era {
     public void describeEra() {
-        System.out.println("\nWelcome to the Maratha Empire!\nA significant force in India known for its resistance against Mughal rule.\n");
+        Print.slowPrint("\nWelcome to the Maratha Empire!\nA significant force in India known for its resistance against Mughal rule.\n");
     }
 
     public List<String> getKeyEvents() {
@@ -140,20 +155,20 @@ class SimpleQuizStrategy implements QuizStrategy {
         int correctAnswers = 0;
 
         for (Question question : questions) {
-            System.out.println("\nQuestion: " + question.getQuestionText());
+            Print.slowPrint("\nQuestion: " + question.getQuestionText());
             List<String> options = question.getChoices();
             for (int i = 0; i < options.size(); i++) {
-                System.out.println((i + 1) + ". " + options.get(i));
+                Print.slowPrint((i + 1) + ". " + options.get(i));
             }
             System.out.print("Your answer (1-" + options.size() + "): ");
             int answerIndex = scanner.nextInt() - 1;
 
             if (answerIndex >= 0 && answerIndex < options.size() && 
                 options.get(answerIndex).equals(question.getCorrectAnswer())) {
-                System.out.println("Correct!");
+                Print.slowPrint("Correct!");
                 correctAnswers++;
             } else {
-                System.out.println("Incorrect! The correct answer is: " + question.getCorrectAnswer());
+                Print.slowPrint("Incorrect! The correct answer is: " + question.getCorrectAnswer());
             }
         }
         return correctAnswers == questions.size();
@@ -179,9 +194,9 @@ class TravelCommand {
     }
 
     private void displayKeyEvents() {
-        System.out.println("\nKey Events:");
+        Print.slowPrint("\nKey Events:");
         for (String event : era.getKeyEvents()) {
-            System.out.println(" - " + event);
+            Print.slowPrint(" - " + event);
         }
     }
 }
@@ -231,7 +246,7 @@ class TimeTravelHistory {
         if (!history.isEmpty()) {
             timeTraveler.restoreState(history.remove(history.size() - 1));
         } else {
-            System.out.println("No previous state to restore.");
+            Print.slowPrint("No previous state to restore.");
         }
     }
 }
@@ -265,18 +280,18 @@ class Question {
 public class TimeTravelGame {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-       System.out.println("\n✨🌟 Welcome to the Time Travel Simulator! 🌟✨");
-       System.out.println("\nEver wondered what it would be like to step back in time and witness the grandeur of ancient civilizations?");
-       System.out.println("In this immersive journey, you'll get the chance to explore some of India's most fascinating historical eras.");
-       System.out.println("From the bustling cities of the Indus Valley to the golden age of the Gupta Empire, and the mighty rule of the Mughals and Marathas...");
-       System.out.println("Each era has its own unique story, culture, and challenges. But beware! Only those who can pass the tests of knowledge can move forward.");
-       System.out.println("\nAre you ready to embark on a thrilling adventure through time?");
-       System.out.println("Prepare yourself to learn, explore, and prove your knowledge as you navigate the rich history of India.\n");
+       Print.slowPrint("\n✨🌟 Welcome to the Time Travel Simulator! 🌟✨");
+       Print.slowPrint("\nEver wondered what it would be like to step back in time and witness the grandeur of ancient civilizations?");
+       Print.slowPrint("In this immersive journey, you'll get the chance to explore some of India's most fascinating historical eras.");
+       Print.slowPrint("From the bustling cities of the Indus Valley to the golden age of the Gupta Empire, and the mighty rule of the Mughals and Marathas...");
+       Print.slowPrint("Each era has its own unique story, culture, and challenges. But beware! Only those who can pass the tests of knowledge can move forward.");
+       Print.slowPrint("\nAre you ready to embark on a thrilling adventure through time?");
+       Print.slowPrint("Prepare yourself to learn, explore, and prove your knowledge as you navigate the rich history of India.\n");
        System.out.print("Do you want to begin your journey? (yes/no): ");
         String playResponse = scanner.nextLine().trim().toLowerCase();
 
         if (!playResponse.equals("yes")) {
-            System.out.println("Maybe next time. Goodbye!");
+            Print.slowPrint("Maybe next time. Goodbye!");
             return;
         }
 
@@ -307,19 +322,19 @@ public class TimeTravelGame {
             // Administer quiz
             boolean passed = quizStrategy.administerQuiz(era.getQuizQuestions());
             if (passed) {
-                System.out.println("\nLevel Completed! Advancing to the next era...");
+                Print.slowPrint("\nLevel Completed! Advancing to the next era...");
                 currentEraIndex++; // Move to the next era
             } else {
-                System.out.println("\nIncorrect! Returning to the previous era...");
+                Print.slowPrint("\nIncorrect! Returning to the previous era...");
                 history.undo(traveler); // Undo the last state
                 if (currentEraIndex > 0) {
                     currentEraIndex--; // Move back to the previous era
                 } else {
-                    System.out.println("You are at the first era, can't go back further.");
+                    Print.slowPrint("You are at the first era, can't go back further.");
                 }
             }
         }
 
-        System.out.println("\nCongratulations! You've completed the journey through all historical eras!");
+        Print.slowPrint("\nCongratulations! You've completed the journey through all historical eras!");
     }
 }
